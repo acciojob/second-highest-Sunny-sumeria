@@ -10,55 +10,31 @@
 	<script>
 		function secondHighest(arr) {
 			//Write your code here
-			function secondHighest(arr) {
-  // Edge case: empty or single element array
-  if (arr.length <= 1) return -Infinity;
-
-  let highest = -Infinity;
-  let secondHighest = -Infinity;
-
-  for (let i = 0; i < arr.length; i++) {
-    const current = Number(arr[i]);
-
-    if (current > highest) {
-      // The previous highest moves down to second place
-      secondHighest = highest;
-      highest = current;
-    } else if (current < highest && current > secondHighest) {
-      // Current is between highest and secondHighest
-      secondHighest = current;
+    // Check if the array has fewer than 2 elements
+    if (arr.length < 2) {
+        return -Infinity;
     }
-  }
 
-  // If secondHighest is still -Infinity, it means all elements were the same
-  return secondHighest;
-}
-			function secondHighest(arr) {
-  // Edge case: empty or single element array
-				
-  if (arr.length <= 1) return -Infinity;
+    let highest = -Infinity;
+    let secondHighest = -Infinity;
 
-  let highest = -Infinity;
-  let secondHighest = -Infinity;
+    for (let i = 0; i < arr.length; i++) {
+        let current = arr[i];
 
-  for (let i = 0; i < arr.length; i++) {
-    const current = Number(arr[i]);
-
-    if (current > highest) {
-      // The previous highest moves down to second place
-      secondHighest = highest;
-      highest = current;
-    } else if (current < highest && current > secondHighest) {
-      // Current is between highest and secondHighest
-      secondHighest = current;
+        // If current element is greater than the highest
+        if (current > highest) {
+            secondHighest = highest;
+            highest = current;
+        } 
+        // If current is less than highest but greater than secondHighest
+        else if (current > secondHighest && current < highest) {
+            secondHighest = current;
+        }
     }
-  }
 
-  return secondHighest;
-}
+    // If secondHighest was never updated (e.g., all elements were the same)
+    return secondHighest;
 		}
-		
-
 		function Main() {
 			var n = prompt("Enter the number of elements");
 			var arr = [];
